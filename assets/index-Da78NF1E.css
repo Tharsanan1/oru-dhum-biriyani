@@ -4,3 +4,13 @@
 .check-card:not(.checked)::after{content:"Tick";color:var(--saffron);letter-spacing:.16em;text-transform:uppercase;font-size:10px;font-weight:800}
 .check-card.checked::after{content:none}
 .check-card:not(.checked):hover{border-color:#eaa62c80}
+@media (prefers-reduced-motion:no-preference){
+@keyframes needs-tick{0%{box-shadow:0 0 0 0 #eaa62c8c}70%{box-shadow:0 0 0 8px #eaa62c00}100%{box-shadow:0 0 0 0 #eaa62c00}}
+@keyframes tick-breathe{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes ticked-pop{0%{transform:scale(.84)}55%{transform:scale(1.12)}100%{transform:scale(1)}}
+.check-card:not(.checked) .custom-check{animation:needs-tick 1.7s ease-out infinite}
+.check-card:not(.checked)~.check-card .custom-check{animation:none}
+.check-card:not(.checked)::after{animation:tick-breathe 1.7s ease-in-out infinite}
+.check-card:not(.checked)~.check-card::after{animation:none}
+.check-card.checked.check-card>.custom-check{animation:ticked-pop .32s cubic-bezier(.2,.8,.2,1.25)}
+}
